@@ -1,7 +1,7 @@
 {
-  "name": "drewandjen",
+  "name": "brddg",
   "version": "1.0.0",
-  "description": "our wedding site",
+  "description": "A brands best friend",
   "main": "server.js",
   "scripts": {
     "test": "jest",
@@ -26,8 +26,8 @@
   "pre-commit": [
     "staged-lint"
   ],
-  "author": "Drew Delianides",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "babel-eslint": "^7.1.1",
     "cross-env": "^3.1.4",
@@ -74,4 +74,3 @@
     "webpack-s3-plugin": "^0.9.2"
   }
 }
-

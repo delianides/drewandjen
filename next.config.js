@@ -15,25 +15,25 @@ module.exports = {
       new webpack.DefinePlugin({
         STATIC: JSON.stringify(STATIC),
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-        __DEV__: process.env.NODE_ENV !== "production"
-      })
+        __DEV__: process.env.NODE_ENV !== "production",
+      }),
     );
 
-    if (process.env.AWS_ID && process.env.AWS_KEY) {
+    if (process.env.D_AWS_KEY_ID && process.env.D_AWS_SECRET_ID) {
       config.plugins.push(
         new S3Plugin({
           directory: "./static",
           basePath: "drewandjen",
           s3Options: {
-            accessKeyId: process.env.AWS_ID,
-            secretAccessKey: process.env.AWS_KEY,
-            region: "us-east-1"
+            accessKeyId: process.env.D_AWS_KEY_ID,
+            secretAccessKey: process.env.D_AWS_SECRET_ID,
+            region: "us-east-1",
           },
           s3UploadOptions: {
             Bucket: "drewandjen",
-            ACL: "public-read"
-          }
-        })
+            ACL: "public-read",
+          },
+        }),
       );
     }
 
@@ -64,7 +64,7 @@ module.exports = {
 
     config.resolve.alias = {
       react: "preact-compat/dist/preact-compat",
-      "react-dom": "preact-compat/dist/preact-compat"
+      "react-dom": "preact-compat/dist/preact-compat",
     };
 
     // Disable uglify. This has been fixed in https://github.com/developit/preact-compat/issues/155.
@@ -78,5 +78,5 @@ module.exports = {
     });
 
     return config;
-  }
+  },
 };

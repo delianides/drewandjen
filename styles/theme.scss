@@ -1,0 +1,126 @@
+$use-horizontal-rules: false;
+$use-accordions: false;
+$use-cards: false;
+$use-modals: false;
+$use-panels: false;
+$use-progress: false;
+$use-toggles: false;
+// $use-inputs: false;
+$use-buttons-social: false;
+$use-checkboxes: false;
+// $use-icons-social: false;
+$use-iframes: false;
+$use-select: false;
+$use-constrain: false;
+$use-fixed: false;
+$use-outlined: false;
+$use-push-back: false;
+$use-relative: false;
+$use-rounded-corners: false;
+$use-scrollable: false;
+$use-shapes: false;
+
+$breakpoints: (
+  "palm-wide": (
+    min: 481px,
+    max: 768px
+  ),
+  "palm-wide-and-up": (
+    min: 481px
+  ),
+  "handheld": (
+    max: 768px
+  ),
+  "lap-and-up": (
+    min: 769px
+  ),
+  "lap-wide-and-up": (
+    min: 1025px
+  )
+);
+
+$body-font: 'Open Sans', sans-serif;
+$head-font: 'Sorts Mill Goudy', serif;
+
+$fonts: (
+  goudy: (
+    h1: (
+      font-family: $head-font,
+      font-size: 2.6em,
+      line-height: 1.05,
+      margin-bottom: $base-spacing-unit
+    ),
+    h2: (
+      font-family: $head-font,
+      font-size: 1.6em,
+      line-height: 1.25,
+      margin-bottom: $base-spacing-unit
+    ),
+    h3: (
+      font-family: $head-font,
+      font-size: 1.25em,
+      line-height: 1.25,
+      margin-bottom: $base-spacing-unit
+    ),
+    h4: (
+      font-family: $head-font,
+      font-size: 1.25em,
+      line-height: 1.5,
+      margin-bottom: $half-spacing-unit
+    ),
+    h5: (
+      font-family: $head-font,
+      font-size: 1em,
+      line-height: 1.2222222,
+      margin-bottom: $half-spacing-unit
+    ),
+    h6: (
+      font-family: $head-font,
+      font-size: .8em,
+      line-height: 1.2222222,
+      margin-bottom: $half-spacing-unit
+    ),
+    h7: (
+      font-family: $head-font,
+      font-size: 1em,
+      line-height: 1.2222222,
+      margin-bottom: $half-spacing-unit
+    )
+  ),
+  open-sans: (
+    p: (
+      font-family: $body-font,
+      font-size: 1em,
+      line-height: 1.6,
+      margin-bottom: $half-spacing-unit
+    ),
+    small: (
+      font-family: $body-font,
+      font-size: .8em,
+      line-height: 1.2222222,
+      margin-bottom: $half-spacing-unit
+    )
+  )
+);
+
+
+// type sets
+$typography: (
+  h1: goudy,
+  h2: goudy,
+  h3: goudy,
+  h4: goudy,
+  h5: goudy,
+  h6: goudy,
+  h7: goudy,
+  p: open-sans,
+  small: open-sans,
+);
+
+$colors: extend($colors, (
+  "dark-primary": #252525,
+  "dark-secondary": #404040,
+  "dark-tertiary": #656565,
+
+  "light-tertiary": #F4EFEB,
+));
