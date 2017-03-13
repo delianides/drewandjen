@@ -1,20 +1,18 @@
-// import default vars
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Sorts+Mill+Goudy:400,400i');
+
 @import "./node_modules/junction/src/_mixins.scss";
 
 @import "./styles/theme.scss";
-
 // import full library
 @import "./node_modules/junction/src/framework.scss";
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Sorts+Mill+Goudy');
-
 
 .btn--filled {
-   letter-spacing: 2px;
-   text-transform: uppercase;
+  letter-spacing: 2px;
+  text-transform: uppercase;
  }
 
- .btn--filled-light {
+.btn--filled-light {
    @extend %btn;
 
    letter-spacing: 2px;
@@ -88,6 +86,13 @@ ol li {
   padding-bottom: 20px;
 }
 
+.logo-text {
+  display: block;
+  @include media-query(handheld) {
+    display: inline-block;
+  }
+}
+
 input:focus::-webkit-input-placeholder{
   color: transparent!important;
 }
@@ -122,9 +127,4 @@ input:focus:-moz-placeholder{
   -o-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   display: block;
-}
-
-.jd-name{
-  font-style: italic;
-  font-weight: 700;
 }

@@ -58,24 +58,28 @@ $fonts: (
     ),
     h3: (
       font-family: $head-font,
+      font-style: italic,
       font-size: 1.25em,
       line-height: 1.25,
       margin-bottom: $base-spacing-unit
     ),
     h4: (
       font-family: $head-font,
+      font-style: italic,
       font-size: 1.25em,
       line-height: 1.5,
       margin-bottom: $half-spacing-unit
     ),
     h5: (
       font-family: $head-font,
+      font-style: italic,
       font-size: 1em,
       line-height: 1.2222222,
       margin-bottom: $half-spacing-unit
     ),
     h6: (
       font-family: $head-font,
+      font-style: italic,
       font-size: .8em,
       line-height: 1.2222222,
       margin-bottom: $half-spacing-unit
@@ -118,9 +122,10 @@ $typography: (
 );
 
 $colors: extend($colors, (
+  "primary": #A185BF,
+  "secondary": #3CA970,
   "dark-primary": #252525,
   "dark-secondary": #404040,
   "dark-tertiary": #656565,
-
   "light-tertiary": #F4EFEB,
 ));

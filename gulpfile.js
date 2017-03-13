@@ -9,7 +9,7 @@ gulp.task("sass", function() {
     .src("./styles/style.scss")
     .pipe($.plumber())
     .pipe($.sass.sync({ errLogToConsole: true }))
-    .pipe($.purifycss(["./pages/**/*.js", "./components/**/*.js"]))
+    // .pipe($.purifycss(["./pages/**/*.js", "./components/**/*.js"]))
     .pipe(
       $.autoprefixer(
         "last 2 version",
@@ -17,8 +17,8 @@ gulp.task("sass", function() {
         "ie 9",
         "opera 12.1",
         "ios 6",
-        "android 4"
-      )
+        "android 4",
+      ),
     )
     .pipe($.mergeMediaQueries({ log: true }))
     .pipe($.minifyCss())

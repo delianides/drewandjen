@@ -3,6 +3,7 @@ const S3Plugin = require("webpack-s3-plugin");
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 
 let STATIC = "/static";
+
 if (process.env.NODE_ENV === "production") {
   // CDN FTW
   STATIC = "//d16anjvf8exjxs.cloudfront.net/drewandjen/static";
