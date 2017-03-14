@@ -13,9 +13,19 @@ const logoClasses = [].join(" ");
 
 const iconClasses = ["h2", "visuallyhidden@handheld"].join(" ");
 
-const textClasses = ["flush", "small", "soft-half-top@lap-and-up"].join(" ");
+const textClasses = [
+  "flush",
+  "small",
+  // "soft-half-ends@handheld",
+  "soft-half-top@lap-and-up",
+].join(" ");
 
-const links = [{ path: "/rsvp", icon: "icon fa fa-reply", title: "RSVP" }];
+const links = [
+  { path: "/rsvp", icon: "la la-reply", title: "RSVP" },
+  { path: "/#registry", icon: "la la-gift", title: "Registry" },
+  { path: "/#map", icon: "la la-map2", title: "Map" },
+  { path: "/#contact", icon: "la la-envelope", title: "Contact" },
+];
 
 export default class Nav extends Component {
   constructor(...args) {
@@ -37,7 +47,7 @@ export default class Nav extends Component {
       <div
         className={
           `
-          soft-half-ends@handheld soft-ends@lap-and-up soft-sides@lap-and-up
+          soft-half-ends@handheld push-half@handheld soft-ends@lap-and-up soft-sides@lap-and-up
           hard-sides@handheld text-center@lap-and-up
         `
         }
@@ -51,17 +61,18 @@ export default class Nav extends Component {
             `
             }
           >
-            <ReactSVG
-              path="/static/logos/drewandjen_small.svg"
-              className="icon flush-bottom display-inline-block"
+            <span
+              className={
+                `
+                la la-heart-circle h2 flush-bottom display-inline-block soft-half-right@handheld
+              `
+              }
               style={{
                 verticalAlign: "middle",
               }}
             />
             <p
-              className={
-                `${textClasses} logo-text flush hard visuallyhidden@handheld`
-              }
+              className={`${textClasses} flush hard visuallyhidden@handheld`}
               style={{ verticalAlign: "middle" }}
             >
               US
@@ -78,7 +89,7 @@ export default class Nav extends Component {
                 text-center
               `
               }
-              style={{ padding: active ? "6px 0 6px 15px" : "" }}
+              style={{ padding: active ? "9px 0 9px 15px" : "" }}
             >
               <span className={`${iconClasses} ${icon}`} />
               <p className={textClasses}>
@@ -98,8 +109,8 @@ export default class Nav extends Component {
           <span
             className={
               `
-              ${active ? "fa-times-circle" : "fa-bars"}
-              fa soft-half h2 flush-bottom display-block
+              ${active ? "la-cross-circle" : "la-menu"}
+              la soft-half h2 display-block
             `
             }
           />

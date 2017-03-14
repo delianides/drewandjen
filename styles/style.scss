@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Sorts+Mill+Goudy:400,400i');
-
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600|Sorts+Mill+Goudy:400,400i');
 @import "./node_modules/junction/src/_mixins.scss";
 
 @import "./styles/theme.scss";
+@import "./linearicon/style.scss";
 // import full library
 @import "./node_modules/junction/src/framework.scss";
 
@@ -13,20 +13,21 @@
  }
 
 .btn--filled-light {
-   @extend %btn;
+ @extend %btn;
 
-   letter-spacing: 2px;
-   text-transform: uppercase;
-   color: $brand-color;
-   border-color: $light-color;
-   background-color: $light-color;
+ letter-spacing: 2px;
+ text-transform: uppercase;
+ color: $brand-color;
+ border-color: $light-color;
+ background-color: $light-color;
 
-   &:hover {
-     color: map-get($colors, primary);
-     border-color: map-get($colors, light-tertiary);
-     background-color: map-get($colors, light-tertiary);
-   }
+ &:hover {
+   color: map-get($colors, primary);
+   border-color: map-get($colors, light-tertiary);
+   background-color: map-get($colors, light-tertiary);
  }
+}
+
 
 .plain {
   text-decoration: none;

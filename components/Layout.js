@@ -39,7 +39,6 @@ class Layout extends Component {
             content="initial-scale=1.0, width=device-width"
           />
           <link href="/static/style.css" rel="stylesheet" />
-          <script src="https://use.fontawesome.com/c96c7a819a.js" />
         </Head>
         <Headroom
           style={{ borderBottom: "1px solid #DDDDDD", background: "white" }}
