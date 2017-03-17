@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600|Sorts+Mill+Goudy:400,400i');
+// @import url('https://fonts.googleapis.com/css?family=Raleway:100,300,400,600|Sorts+Mill+Goudy:400,400i');
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700|Sorts+Mill+Goudy:400,400i');
+
 @import "./node_modules/junction/src/_mixins.scss";
 
 @import "./styles/theme.scss";
@@ -28,7 +31,6 @@
  }
 }
 
-
 .plain {
   text-decoration: none;
 }
@@ -37,29 +39,12 @@
   border-bottom: 1px solid #dddddd
 }
 
-input {
-  opacity: .4;
-  padding-bottom: 10px;
-  border-bottom: 4px solid #ffffff;
-};
-
-input:focus {
-  opacity: 1;
-  border-bottom: 4px solid #ffffff;
-  color: map-get($colors, light-primary);
-};
-
-textarea {
-  opacity: .4;
-  padding-bottom: 10px;
-  border-bottom: 4px solid #ffffff;
-};
-
-textarea:focus {
-  opacity: 1;
-  border-bottom: 4px solid #ffffff;
-  color: map-get($colors, light-primary);
-};
+input[type="text"],
+input[type="email"]{
+ border-bottom-color: map-get($colors, dark-primary);
+ border-bottom-width: 2px;
+ border-bottom-style: solid;
+}
 
 a {
   cursor: pointer;
@@ -94,17 +79,16 @@ ol li {
   }
 }
 
-input:focus::-webkit-input-placeholder{
-  color: transparent!important;
-}
+//   color: transparent!important;
+// }
 
-input:focus::-moz-placeholder{
-  color: transparent!important;
-}
+// input:focus::-moz-placeholder{
+//   color: transparent!important;
+// }
 
-input:focus:-moz-placeholder{
-  color: transparent!important;
-}
+// input:focus:-moz-placeholder{
+//   color: transparent!important;
+// }
 
 .scale-on-hover {
   overflow: hidden;
@@ -128,4 +112,18 @@ input:focus:-moz-placeholder{
   -o-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   display: block;
+}
+
+.text-clear{
+  font-style: normal;
+}
+
+.body-info{
+  font-size: 1.5em;
+  font-weight: 100;
+  line-height: 28px;
+}
+
+.body-icon{
+  color: #9d9d9d;
 }

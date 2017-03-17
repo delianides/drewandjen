@@ -2,6 +2,7 @@ $use-horizontal-rules: false;
 $use-accordions: false;
 $use-cards: false;
 $use-modals: false;
+$use-input: false;
 $use-panels: false;
 $use-progress: false;
 $use-toggles: false;
@@ -11,7 +12,7 @@ $use-checkboxes: false;
 // $use-icons-social: false;
 $use-iframes: false;
 $use-select: false;
-$use-constrain: false;
+// $use-constrain: false;
 $use-fixed: false;
 $use-outlined: false;
 $use-push-back: false;
@@ -39,7 +40,7 @@ $breakpoints: (
   )
 );
 
-$body-font: 'Open Sans', sans-serif;
+$body-font: 'Josefin Sans', sans-serif;
 $head-font: 'Sorts Mill Goudy', serif;
 
 $fonts: (
@@ -58,28 +59,24 @@ $fonts: (
     ),
     h3: (
       font-family: $head-font,
-      font-style: italic,
       font-size: 1.25em,
       line-height: 1.25,
       margin-bottom: $base-spacing-unit
     ),
     h4: (
       font-family: $head-font,
-      font-style: italic,
       font-size: 1.25em,
       line-height: 1.5,
       margin-bottom: $half-spacing-unit
     ),
     h5: (
       font-family: $head-font,
-      font-style: italic,
       font-size: 1em,
       line-height: 1.2222222,
       margin-bottom: $half-spacing-unit
     ),
     h6: (
       font-family: $head-font,
-      font-style: italic,
       font-size: .8em,
       line-height: 1.2222222,
       margin-bottom: $half-spacing-unit
@@ -91,7 +88,7 @@ $fonts: (
       margin-bottom: $half-spacing-unit
     )
   ),
-  open-sans: (
+  josefin: (
     p: (
       font-family: $body-font,
       font-size: 1em,
@@ -117,12 +114,13 @@ $typography: (
   h5: goudy,
   h6: goudy,
   h7: goudy,
-  p: open-sans,
-  small: open-sans,
+  p: josefin,
+  small: josefin,
 );
 
 $colors: extend($colors, (
   "primary": #A185BF,
+  "light-primary": "#656565",
   "secondary": #3CA970,
   "dark-primary": #252525,
   "dark-secondary": #404040,

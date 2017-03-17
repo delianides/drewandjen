@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import Layout from "../../components/Layout";
-import Picture from "../../components/Picture";
+import Picture from "../../components/Util/Picture";
+import Icon from "../../components/Util/Icon";
 
-const labelClasses = ["flush", "soft-half-left", "soft-half-bottom"].join(" ");
+const labelClasses = ["flush", "soft-half-bottom"].join(" ");
 
 const iconClasses = [
   "plain",
@@ -23,10 +24,10 @@ export default () => (
     <div className="grid flush">
       <div className="floating text-left">
         <div
-          className="one-whole one-half@lap-and-up display-inline-block push-bottom@handheld floating__item"
+          className="one-whole display-inline-block push-bottom@handheld floating__item"
         >
           <Picture
-            className="background--fill ratio--square push-left flush-left"
+            className="background--fill ratio--landscape"
             style={{
               backgroundImage: `url('${STATIC}/images/dj2@2x.jpg')`,
               backgroundPosition: "70%",
@@ -34,18 +35,21 @@ export default () => (
           />
         </div>
         <div
-          className="text-dark-primary one-whole one-half@lap-and-up floating__item soft-double-sides@palm-wide-and-up soft-sides text-left display-inline-block text-center@handheld"
+          className="one-whole floating__item soft-double-sides@palm-wide-and-up soft-sides text-left display-inline-block text-center@handheld"
         >
-          <h3>RSVP Below</h3>
-          <p>
-            If you received an invitation please fill out the form below to let us know if you can attend.
-          </p>
-          <p>
-            Please list each family member or friend you might be bringing with you. Only one family member needs to RSVP.
-          </p>
-          <p>
-            The wedding will take place at 6:00 PM on May 13, 2017. You can find directions here.
-          </p>
+          <h2
+            className="italic text-primary text-center push-double-ends capitalize"
+          >
+            Please use this form to RSVP by April 22, 2017
+          </h2>
+          <div className="text-center body-info">
+            <p>
+              If you have received an invitation please fill out the form below to let us know if you can attend.
+            </p>
+            <p>
+              Please list each family member or friend you might be bringing with you. Only one household family member needs to RSVP.
+            </p>
+          </div>
         </div>
       </div>
       <Form />
@@ -53,8 +57,91 @@ export default () => (
   </Layout>
 );
 
-// const Page = ({ url }) => (
 class Form extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isGoing: "yes",
+      numberOfGuests: 1,
+      emailAddress: "",
+      firstName: "",
+      lastName: "",
+      additionalGuests: [],
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  // eslint-disable-next-line
+  handleGuestChange = idx =>
+    evt => {
+      const newGuestList = this.state.additionalGuests.map((person, sidx) => {
+        if (idx !== sidx) return person;
+        return { ...person, name: evt.target.value };
+      });
+
+      this.setState({
+        additionalGuests: newGuestList,
+      });
+    };
+
+  handleRemoveGuest = idx =>
+    () => {
+      this.setState({
+        additionalGuests: this.state.additionalGuests.filter(
+          (s, sidx) => idx !== sidx
+        ),
+        numberOfGuests: this.state.numberOfGuests - 1,
+      });
+    };
+
+  handleAddGuest = () => {
+    this.setState({
+      additionalGuests: this.state.additionalGuests.concat([{ name: "" }]),
+      numberOfGuests: this.state.numberOfGuests + 1,
+    });
+  };
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleSubmit = event => {
+    fetch("https://api.formbucket.com/f/buk_ejscAdDuG2xBlOGgdVrptBAN", {
+      method: "post",
+      mode: "cors",
+      headers: {
+        accept: "application/javascript",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.emailAddress,
+        attending: this.state.isGoing,
+        additionalGuests: this.state.additionalGuests.map(p => p.name).join(),
+      }),
+    })
+      .then(function(response) {
+        this.setState({
+          submitted: response,
+        });
+      })
+      .catch(function(err) {
+        this.setState({
+          submitted: err,
+        });
+      });
+
+    event.preventDefault();
+  };
+
   render() {
     return (
       <div>
@@ -79,67 +166,161 @@ class Form extends Component {
           >
             <form
               className="text-left text-primary"
-              action="//api.formbucket.com/f/buk_ejscAdDuG2xBlOGgdVrptBAN"
               id="contact-form"
-              method="post"
-              role="form"
+              onSubmit={this.handleSubmit}
             >
               <fieldset>
 
                 <div
                   className={
                     "hard-left soft-right@lap-and-up push-double-bottom " +
-                      "grid__item one-whole one-half@lap-and-up"
+                      "grid__item one-whole one-half@lap-and-up text-dark-primary"
                   }
                 >
-                  <h5 className={labelClasses}>My name is</h5>
+                  <h5 className={labelClasses}>My first name is</h5>
                   <input
-                    placeholder="Name"
-                    className="h2 text--primary"
-                    id="name"
-                    name="name"
+                    placeholder="First Name"
+                    className="h2 text-dark-primary"
+                    id="firstName"
+                    name="firstName"
                     type="text"
+                    value={this.state.firstName}
+                    onChange={this.handleInputChange}
                     required
                   />
                 </div>
 
                 <div
                   className={
-                    "hard-left@handheld push-double-bottom " +
-                      "grid__item one-whole one-half@lap-and-up"
+                    "hard-left soft-right@lap-and-up push-double-bottom " +
+                      "grid__item one-whole one-half@lap-and-up text-dark-primary"
+                  }
+                >
+                  <h5 className={labelClasses}>My last name is</h5>
+                  <input
+                    placeholder="Last Name"
+                    className="h2 text-dark-primary one-whole"
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    value={this.state.lastName}
+                    onChange={this.handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div
+                  className={
+                    "hard-left soft-right@lap-and-up push-double-bottom " +
+                      "grid__item one-whole text-dark-primary"
                   }
                 >
                   <h5 className={labelClasses}>My email is</h5>
                   <input
-                    placeholder="email address"
-                    className="h2 text--primary"
+                    placeholder="Email Address"
+                    className="h2 text-dark-primary one-whole"
                     id="email"
-                    name="_replyto"
+                    name="emailAddress"
                     type="email"
+                    value={this.state.emailAddress}
+                    onChange={this.handleInputChange}
                     required
                   />
                 </div>
 
-                <div className="push-double-bottom">
-                  <h5 className={labelClasses}>{"I'm interested in"}</h5>
-                  <textarea
-                    placeholder="home planet"
-                    className="h2 text--primary"
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                  />
+                <div
+                  className={
+                    "hard-left soft-right@lap-and-up push-double-bottom " +
+                      "grid__item one-whole one-half@lap-and-up text-dark-primary"
+                  }
+                >
+                  <h5 className={labelClasses}>Attending?</h5>
+                  <label className="h2 text-dark-primary display-inline-block">
+                    <input
+                      className="h2 text-dark-primary push-half-right"
+                      style={{
+                        marginTop: "11px",
+                      }}
+                      name="isGoing"
+                      type="radio"
+                      value="yes"
+                      checked={this.state.isGoing === "yes"}
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    Will Come!
+                  </label>
+
+                  <label
+                    className="h2 text-dark-primary push-double-left display-inline-block"
+                  >
+                    <input
+                      className="h2 text-dark-primary push-half-right"
+                      style={{
+                        marginTop: "11px",
+                      }}
+                      name="isGoing"
+                      type="radio"
+                      value="no"
+                      checked={this.state.isGoing === "no"}
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    Regrets
+                  </label>
                 </div>
 
-                <input id="next" name="_next" type="hidden" />
+                <div
+                  className={
+                    "hard-left soft-right@lap-and-up push-double-bottom " +
+                      "grid__item one-whole text-dark-primary"
+                  }
+                >
+                  <h5 className={labelClasses}>Additional Guests</h5>
+                  {this.state.additionalGuests.map((person, id) => (
+                    <div key={id}>
+                      <input
+                        className="h2 text-dark-primary two-thirds@handheld"
+                        placeholder="Full Name"
+                        type="text"
+                        value={person.name}
+                        onChange={this.handleGuestChange(id)}
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={this.handleRemoveGuest(id)}
+                        className="small uppercase push-half-left"
+                      >
+                        <span
+                          style={{ marginRight: "3px" }}
+                          className="p la la-user-minus text-center"
+                        />
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+
+                  <button
+                    type="button"
+                    onClick={this.handleAddGuest}
+                    className="small uppercase"
+                  >
+                    <span
+                      style={{ marginRight: "3px" }}
+                      className="p la la-user-plus text-center"
+                    />
+                    Add
+                  </button>
+                </div>
+
                 <div className="floating">
                   <button
                     className="p btn--filled-light floating__item soft-half-bottom"
                     id="submit"
                     type="submit"
                   >
-                    Send My Message
+                    RSVP
                   </button>
                 </div>
               </fieldset>

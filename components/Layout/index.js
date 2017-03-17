@@ -47,8 +47,18 @@ class Layout extends Component {
             <Nav />
           </div>
         </Headroom>
-        <div style={{ maxWidth: 10000, padding: 0, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1440, padding: 0, margin: "0 auto" }}>
           {children}
+        </div>
+        <div
+          className="background--dark-primary soft text-center push-double-top"
+        >
+          <p className="small flush text-light">
+            Drew and Jen | May 13, 2017 |
+            <a className="body-clear" href="mailto:hello@drewandjen.com">
+              Email Us!
+            </a>
+          </p>
         </div>
       </div>
     );

@@ -1,23 +1,23 @@
 import React, { Component } from "react";
-import Picture from "./Picture";
+import Picture from "../Util/Picture";
 
 class Registry extends Component {
   render() {
     const {
       url,
+      alt,
       store,
+      classes,
     } = this.props;
+    console.log(this.props);
     return (
-      <div
-        className="one-whole one-third@lap-and-up display-inline-block push-bottom@handheld floating__item"
-      >
+      <div className={classes}>
         <span>
           <a href={url}>
             <Picture
               className="background--fill ratio--square registry-logo"
               style={{
                 backgroundImage: `url('${STATIC}/logos/${store}@2x.png')`,
-                backgroundSize: "250px",
               }}
             />
           </a>
@@ -28,8 +28,10 @@ class Registry extends Component {
 }
 
 Registry.propTypes = {
-  store: React.PropTypes.string,
   url: React.PropTypes.string,
+  alt: React.PropTypes.string,
+  store: React.PropTypes.string,
+  classes: React.PropTypes.string,
 };
 
 export default Registry;
