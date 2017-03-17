@@ -67,11 +67,16 @@ class Form extends Component {
       firstName: "",
       lastName: "",
       additionalGuests: [],
+      submitted: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("update");
+  //   return true;
+  // }
   // eslint-disable-next-line
   handleGuestChange = idx =>
     evt => {
@@ -113,6 +118,8 @@ class Form extends Component {
   }
 
   handleSubmit = event => {
+    const _this = this;
+
     fetch("https://api.formbucket.com/f/buk_ejscAdDuG2xBlOGgdVrptBAN", {
       method: "post",
       mode: "cors",
@@ -129,12 +136,12 @@ class Form extends Component {
       }),
     })
       .then(function(response) {
-        this.setState({
-          submitted: response,
+        _this.setState({
+          submitted: true,
         });
       })
       .catch(function(err) {
-        this.setState({
+        _this.setState({
           submitted: err,
         });
       });
@@ -142,7 +149,15 @@ class Form extends Component {
     event.preventDefault();
   };
 
+
+
   render() {
+    const { submitted } = this.state;
+    if (submitted){
+      return (
+          <div>Submitted</div>
+      )
+    }
     return (
       <div>
         <style>
@@ -269,50 +284,50 @@ class Form extends Component {
                     Regrets
                   </label>
                 </div>
-
-                <div
-                  className={
-                    "hard-left soft-right@lap-and-up push-double-bottom " +
-                      "grid__item one-whole text-dark-primary"
-                  }
-                >
-                  <h5 className={labelClasses}>Additional Guests</h5>
-                  {this.state.additionalGuests.map((person, id) => (
-                    <div key={id}>
-                      <input
-                        className="h2 text-dark-primary two-thirds@handheld"
-                        placeholder="Full Name"
-                        type="text"
-                        value={person.name}
-                        onChange={this.handleGuestChange(id)}
-                        required
-                      />
-                      <button
-                        type="button"
-                        onClick={this.handleRemoveGuest(id)}
-                        className="small uppercase push-half-left"
-                      >
-                        <span
-                          style={{ marginRight: "3px" }}
-                          className="p la la-user-minus text-center"
-                        />
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-
-                  <button
-                    type="button"
-                    onClick={this.handleAddGuest}
-                    className="small uppercase"
+                {this.state.isGoing === "yes" &&
+                  <div
+                    className={
+                      "hard-left soft-right@lap-and-up push-double-bottom " +
+                        "grid__item one-whole text-dark-primary"
+                    }
                   >
-                    <span
-                      style={{ marginRight: "3px" }}
-                      className="p la la-user-plus text-center"
-                    />
-                    Add
-                  </button>
-                </div>
+                    <h5 className={labelClasses}>Additional Guests</h5>
+                    {this.state.additionalGuests.map((person, id) => (
+                      <div key={id}>
+                        <input
+                          className="h2 text-dark-primary two-thirds@handheld"
+                          placeholder="Full Name"
+                          type="text"
+                          value={person.name}
+                          onChange={this.handleGuestChange(id)}
+                          required
+                        />
+                        <button
+                          type="button"
+                          onClick={this.handleRemoveGuest(id)}
+                          className="small uppercase push-half-left"
+                        >
+                          <span
+                            style={{ marginRight: "3px" }}
+                            className="p la la-user-minus text-center"
+                          />
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+
+                    <button
+                      type="button"
+                      onClick={this.handleAddGuest}
+                      className="small uppercase"
+                    >
+                      <span
+                        style={{ marginRight: "3px" }}
+                        className="p la la-user-plus text-center"
+                      />
+                      Add
+                    </button>
+                  </div>}
 
                 <div className="floating">
                   <button

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const webpack = require("webpack");
 const S3Plugin = require("webpack-s3-plugin");
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
@@ -17,7 +18,7 @@ module.exports = {
         STATIC: JSON.stringify(STATIC),
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
         __DEV__: process.env.NODE_ENV !== "production",
-      }),
+      })
     );
 
     if (process.env.D_AWS_KEY_ID && process.env.D_AWS_SECRET_ID) {
@@ -34,7 +35,7 @@ module.exports = {
             Bucket: "drewandjen",
             ACL: "public-read",
           },
-        }),
+        })
       );
     }
 

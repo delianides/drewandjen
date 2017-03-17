@@ -23,7 +23,6 @@ const textClasses = [
 const links = [
   { path: "/rsvp", icon: "la la-reply", title: "RSVP" },
   { path: "/#registry", icon: "la la-gift", title: "Registry" },
-  { path: "/#map", icon: "la la-map2", title: "Map" },
   { path: "/#contact", icon: "la la-envelope", title: "Contact" },
 ];
 
