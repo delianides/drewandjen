@@ -9,7 +9,6 @@ class Registry extends Component {
       store,
       classes,
     } = this.props;
-    console.log(this.props);
     return (
       <div className={classes}>
         <span>

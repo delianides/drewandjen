@@ -22,8 +22,8 @@ const textClasses = [
 
 const links = [
   { path: "/rsvp", icon: "la la-reply", title: "RSVP" },
-  { path: "/#registry", icon: "la la-gift", title: "Registry" },
-  { path: "/#contact", icon: "la la-envelope", title: "Contact" },
+  // { path: "/#registry", icon: "la la-gift", title: "Registry" },
+  // { path: "/#contact", icon: "la la-envelope", title: "Contact" },
 ];
 
 export default class Nav extends Component {
