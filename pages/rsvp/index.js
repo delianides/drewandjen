@@ -4,6 +4,8 @@ import Layout from "../../components/Layout";
 import Picture from "../../components/Util/Picture";
 import Icon from "../../components/Util/Icon";
 
+import moment from "moment";
+
 const labelClasses = ["flush", "soft-half-bottom"].join(" ");
 
 const iconClasses = [
@@ -22,7 +24,7 @@ const hideIconText = {
 export default () => (
   <Layout>
     <div className="grid flush">
-      <div className="floating text-left">
+      <div className="floating">
         <div
           className="one-whole display-inline-block push-bottom@handheld floating__item"
         >
@@ -33,23 +35,6 @@ export default () => (
               backgroundPosition: "70%",
             }}
           />
-        </div>
-        <div
-          className="one-whole floating__item soft-double-sides@palm-wide-and-up soft-sides text-left display-inline-block text-center@handheld"
-        >
-          <h2
-            className="italic text-primary text-center push-double-ends capitalize"
-          >
-            Please use this form to RSVP by April 22, 2017
-          </h2>
-          <div className="text-center body-info">
-            <p>
-              If you have received an invitation please fill out the form below to let us know if you can attend.
-            </p>
-            <p>
-              Please list each family member or friend you might be bringing with you. Only one household family member needs to RSVP.
-            </p>
-          </div>
         </div>
       </div>
       <Form />
@@ -133,6 +118,8 @@ class Form extends Component {
         email: this.state.emailAddress,
         attending: this.state.isGoing,
         additionalGuests: this.state.additionalGuests.map(p => p.name).join(),
+        totalGuests: this.state.numberOfGuests,
+        entryDate: moment().toString(),
       }),
     })
       .then(function(response) {
@@ -142,24 +129,87 @@ class Form extends Component {
       })
       .catch(function(err) {
         _this.setState({
-          submitted: err,
+          submitted: "error",
         });
       });
 
     event.preventDefault();
   };
 
-
-
   render() {
     const { submitted } = this.state;
-    if (submitted){
+    if (submitted === "error") {
       return (
-          <div>Submitted</div>
-      )
+        <div
+          className="one-whole floating__item soft-double-sides@palm-wide-and-up soft-sides text-left display-inline-block text-center push-double-top"
+        >
+          <div>
+            <Icon icon="warning" />
+            <h2
+              className="italic text-primary text-center push-half-bottom soft-half-top capitalize"
+            >
+              Oops! There seems to have been an error!
+            </h2>
+            <p className="body-info">Try Refreshing the page.</p>
+            <p className="body-info">
+              If it continues let us know at
+              {" "}
+              <a href="mailto:hello@drewandjen.com">hello@drewandjen.com</a>
+            </p>
+          </div>
+        </div>
+      );
+    }
+    if (submitted) {
+      return (
+        <div
+          className="one-whole floating__item soft-double-sides@palm-wide-and-up soft-sides text-left display-inline-block text-center"
+        >
+          <div>
+            <h2
+              className="italic text-primary text-center push-double-ends capitalize"
+            >
+              Thank you for sending your RSVP!
+            </h2>
+
+            <Icon icon="reminder" />
+            <h2
+              className="italic text-primary text-center push-half-bottom soft-half-top capitalize"
+            >
+              Remember!
+            </h2>
+            <span className="push-half-ends">
+              <p className="body-info">Biggerstaff Retreat</p>
+              <p className="body-info">398 Biggerstaff Road</p>
+              <p className="body-info">Seneca, SC 29672</p>
+            </span>
+            <span className="push-half-ends">
+              <p className="body-info">May 13, 2017</p>
+              <p className="body-info">6:00 PM</p>
+            </span>
+          </div>
+        </div>
+      );
     }
     return (
       <div>
+        <div
+          className="one-whole floating__item soft-double-sides@palm-wide-and-up soft-sides text-left display-inline-block text-center@handheld"
+        >
+          <h2
+            className="italic text-primary text-center push-double-ends capitalize"
+          >
+            Please use this form to RSVP by April 22, 2017
+          </h2>
+          <div className="text-center body-info">
+            <p>
+              If you have received an invitation please fill out the form below to let us know if you can attend.
+            </p>
+            <p>
+              Please list each family member or friend you might be bringing with you. Only one household family member needs to RSVP.
+            </p>
+          </div>
+        </div>
         <style>
           {
             `

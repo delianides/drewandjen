@@ -54,10 +54,7 @@ class Layout extends Component {
           className="background--dark-primary soft text-center push-double-top"
         >
           <p className="small flush text-light">
-            Drew and Jen | May 13, 2017 |
-            <a className="body-clear" href="mailto:hello@drewandjen.com">
-              Email Us!
-            </a>
+            Drew and Jen | May 13, 2017
           </p>
         </div>
       </div>

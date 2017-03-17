@@ -63,6 +63,7 @@
     "instafeed.js": "^1.4.1",
     "lru-cache": "^4.0.2",
     "module-alias": "^2.0.0",
+    "moment": "^2.17.1",
     "next": "2.0.0-beta.36",
     "preact": "^7.2.0",
     "preact-compat": "^3.13.1",
