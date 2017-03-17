@@ -65,7 +65,7 @@ export default () => (
         <Icon icon="dinner" />
         <h2 className="italic text-primary push-top">After!</h2>
         <p className="capitalize body-info">
-          Reception to follow after ceremony.
+          Reception to follow after the ceremony.
         </p>
       </div>
     </section>
