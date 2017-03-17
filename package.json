@@ -1,7 +1,7 @@
 {
-  "name": "brddg",
+  "name": "drewandjen",
   "version": "1.0.0",
-  "description": "A brands best friend",
+  "description": "Our Wedding Website",
   "main": "server.js",
   "scripts": {
     "test": "jest",
