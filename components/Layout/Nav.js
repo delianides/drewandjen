@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import ReactSVG from "react-svg";
 
 const linkClasses = [
   "display-inline-block",
