@@ -52,6 +52,7 @@ class Form extends Component {
       firstName: "",
       lastName: "",
       additionalGuests: [],
+      coffeePref: "none",
       submitted: false,
     };
 
@@ -119,6 +120,7 @@ class Form extends Component {
         attending: this.state.isGoing,
         additionalGuests: this.state.additionalGuests.map(p => p.name).join(),
         totalGuests: this.state.numberOfGuests,
+        coffeePref: this.state.coffeePref,
         entryDate: moment().toString(),
       }),
     })
@@ -300,7 +302,7 @@ class Form extends Component {
                   }
                 >
                   <h5 className={labelClasses}>Attending?</h5>
-                  <label className="h2 text-dark-primary display-inline-block">
+                  <label className="h2 text-dark-primary display-inline-block push-right">
                     <input
                       className="h2 text-dark-primary push-half-right"
                       style={{
@@ -317,7 +319,7 @@ class Form extends Component {
                   </label>
 
                   <label
-                    className="h2 text-dark-primary push-double-left display-inline-block"
+                    className="h2 text-dark-primary display-inline-block push-right"
                   >
                     <input
                       className="h2 text-dark-primary push-half-right"
@@ -335,6 +337,62 @@ class Form extends Component {
                   </label>
                 </div>
                 {this.state.isGoing === "yes" &&
+                <div>
+                <div
+                  className={
+                    "hard-left soft-right@lap-and-up push-double-bottom " +
+                      "grid__item one-whole two-thirds@lap-and-up text-dark-primary"
+                  }
+                >
+                  <h5 className={labelClasses}>After 6pm I Prefer?</h5>
+                  <label className="h2 text-dark-primary display-inline-block push-right">
+                    <input
+                      className="h2 text-dark-primary push-half-right"
+                      style={{
+                        marginTop: "11px",
+                      }}
+                      name="coffeePref"
+                      type="radio"
+                      value="none"
+                      checked={this.state.coffeePref === "none"}
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    No Coffee Please!
+                  </label>
+                  <label
+                    className="h2 text-dark-primary display-inline-block push-right"
+                  >
+                    <input
+                      className="h2 text-dark-primary push-half-right"
+                      style={{
+                        marginTop: "11px",
+                      }}
+                      name="coffeePref"
+                      type="radio"
+                      value="regular"
+                      checked={this.state.coffeePref === "regular"}
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    Regular
+                  </label>
+                  <label className="h2 text-dark-primary display-inline-block push-right">
+                    <input
+                      className="h2 text-dark-primary push-half-right"
+                      style={{
+                        marginTop: "11px",
+                      }}
+                      name="coffeePref"
+                      type="radio"
+                      value="decaf"
+                      checked={this.state.coffeePref === "decaf"}
+                      onChange={this.handleInputChange}
+                      required
+                    />
+                    Decaf
+                  </label>
+                  </div>
                   <div
                     className={
                       "hard-left soft-right@lap-and-up push-double-bottom " +
@@ -377,7 +435,7 @@ class Form extends Component {
                       />
                       Add
                     </button>
-                  </div>}
+                  </div></div>}
 
                 <div className="floating">
                   <button
