@@ -5,6 +5,7 @@ import Picture from "../../components/Util/Picture";
 import Icon from "../../components/Util/Icon";
 
 import moment from "moment";
+import "isomorphic-fetch";
 
 const labelClasses = ["flush", "soft-half-bottom"].join(" ");
 
@@ -302,7 +303,9 @@ class Form extends Component {
                   }
                 >
                   <h5 className={labelClasses}>Attending?</h5>
-                  <label className="h2 text-dark-primary display-inline-block push-right">
+                  <label
+                    className="h2 text-dark-primary display-inline-block push-right"
+                  >
                     <input
                       className="h2 text-dark-primary push-half-right"
                       style={{
@@ -337,105 +340,110 @@ class Form extends Component {
                   </label>
                 </div>
                 {this.state.isGoing === "yes" &&
-                <div>
-                <div
-                  className={
-                    "hard-left soft-right@lap-and-up push-double-bottom " +
-                      "grid__item one-whole two-thirds@lap-and-up text-dark-primary"
-                  }
-                >
-                  <h5 className={labelClasses}>After 6pm I Prefer?</h5>
-                  <label className="h2 text-dark-primary display-inline-block push-right">
-                    <input
-                      className="h2 text-dark-primary push-half-right"
-                      style={{
-                        marginTop: "11px",
-                      }}
-                      name="coffeePref"
-                      type="radio"
-                      value="none"
-                      checked={this.state.coffeePref === "none"}
-                      onChange={this.handleInputChange}
-                      required
-                    />
-                    No Coffee Please!
-                  </label>
-                  <label
-                    className="h2 text-dark-primary display-inline-block push-right"
-                  >
-                    <input
-                      className="h2 text-dark-primary push-half-right"
-                      style={{
-                        marginTop: "11px",
-                      }}
-                      name="coffeePref"
-                      type="radio"
-                      value="regular"
-                      checked={this.state.coffeePref === "regular"}
-                      onChange={this.handleInputChange}
-                      required
-                    />
-                    Regular
-                  </label>
-                  <label className="h2 text-dark-primary display-inline-block push-right">
-                    <input
-                      className="h2 text-dark-primary push-half-right"
-                      style={{
-                        marginTop: "11px",
-                      }}
-                      name="coffeePref"
-                      type="radio"
-                      value="decaf"
-                      checked={this.state.coffeePref === "decaf"}
-                      onChange={this.handleInputChange}
-                      required
-                    />
-                    Decaf
-                  </label>
-                  </div>
-                  <div
-                    className={
-                      "hard-left soft-right@lap-and-up push-double-bottom " +
-                        "grid__item one-whole text-dark-primary"
-                    }
-                  >
-                    <h5 className={labelClasses}>Additional Guests</h5>
-                    {this.state.additionalGuests.map((person, id) => (
-                      <div key={id}>
+                  <div>
+                    <div
+                      className={
+                        "hard-left soft-right@lap-and-up push-double-bottom " +
+                          "grid__item one-whole two-thirds@lap-and-up text-dark-primary"
+                      }
+                    >
+                      <h5 className={labelClasses}>After 6pm I Prefer?</h5>
+                      <label
+                        className="h2 text-dark-primary display-inline-block push-right"
+                      >
                         <input
-                          className="h2 text-dark-primary two-thirds@handheld"
-                          placeholder="Full Name"
-                          type="text"
-                          value={person.name}
-                          onChange={this.handleGuestChange(id)}
+                          className="h2 text-dark-primary push-half-right"
+                          style={{
+                            marginTop: "11px",
+                          }}
+                          name="coffeePref"
+                          type="radio"
+                          value="none"
+                          checked={this.state.coffeePref === "none"}
+                          onChange={this.handleInputChange}
                           required
                         />
-                        <button
-                          type="button"
-                          onClick={this.handleRemoveGuest(id)}
-                          className="small uppercase push-half-left"
-                        >
-                          <span
-                            style={{ marginRight: "3px" }}
-                            className="p la la-user-minus text-center"
-                          />
-                          Remove
-                        </button>
-                      </div>
-                    ))}
-
-                    <button
-                      type="button"
-                      onClick={this.handleAddGuest}
-                      className="small uppercase"
+                        No Coffee Please!
+                      </label>
+                      <label
+                        className="h2 text-dark-primary display-inline-block push-right"
+                      >
+                        <input
+                          className="h2 text-dark-primary push-half-right"
+                          style={{
+                            marginTop: "11px",
+                          }}
+                          name="coffeePref"
+                          type="radio"
+                          value="regular"
+                          checked={this.state.coffeePref === "regular"}
+                          onChange={this.handleInputChange}
+                          required
+                        />
+                        Regular
+                      </label>
+                      <label
+                        className="h2 text-dark-primary display-inline-block push-right"
+                      >
+                        <input
+                          className="h2 text-dark-primary push-half-right"
+                          style={{
+                            marginTop: "11px",
+                          }}
+                          name="coffeePref"
+                          type="radio"
+                          value="decaf"
+                          checked={this.state.coffeePref === "decaf"}
+                          onChange={this.handleInputChange}
+                          required
+                        />
+                        Decaf
+                      </label>
+                    </div>
+                    <div
+                      className={
+                        "hard-left soft-right@lap-and-up push-double-bottom " +
+                          "grid__item one-whole text-dark-primary"
+                      }
                     >
-                      <span
-                        style={{ marginRight: "3px" }}
-                        className="p la la-user-plus text-center"
-                      />
-                      Add
-                    </button>
-                  </div></div>}
+                      <h5 className={labelClasses}>Additional Guests</h5>
+                      {this.state.additionalGuests.map((person, id) => (
+                        <div key={id}>
+                          <input
+                            className="h2 text-dark-primary two-thirds@handheld"
+                            placeholder="Full Name"
+                            type="text"
+                            value={person.name}
+                            onChange={this.handleGuestChange(id)}
+                            required
+                          />
+                          <button
+                            type="button"
+                            onClick={this.handleRemoveGuest(id)}
+                            className="small uppercase push-half-left"
+                          >
+                            <span
+                              style={{ marginRight: "3px" }}
+                              className="p la la-user-minus text-center"
+                            />
+                            Remove
+                          </button>
+                        </div>
+                      ))}
+
+                      <button
+                        type="button"
+                        onClick={this.handleAddGuest}
+                        className="small uppercase"
+                      >
+                        <span
+                          style={{ marginRight: "3px" }}
+                          className="p la la-user-plus text-center"
+                        />
+                        Add
+                      </button>
+                    </div>
+                  </div>}
 
                 <div className="floating">
                   <button
