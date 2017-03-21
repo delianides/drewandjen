@@ -95,13 +95,18 @@ export default () => (
         <Icon icon="contacts" />
         <h2 className="italic text-primary push-top">Contact</h2>
         <p className="body-info">
-          <a href="mailto:hello@drewandjenny.com">hello@drewandjenny.com</a>
+          <a href="mailto:hello@drewandjen.com">hello@drewandjen.com</a>
         </p>
         <p className="h2 italic capitalize body-info push-ends text-primary">
           Our Future Address
         </p>
         <p className="body-info">3201 Glen Forest Drive</p>
         <p className="body-info">Greenville, SC 29607</p>
+      </div>
+      <div
+        className="text-light-primary text-center italic one-whole floating__item soft-double@palm-wide-and-up soft-double-ends soft-sides display-inline-block push-double-top@lap-and-up"
+      >
+        <h1>#jensaysidrew</h1>
       </div>
     </section>
   </Layout>

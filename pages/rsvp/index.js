@@ -181,15 +181,16 @@ class Form extends Component {
             >
               Remember!
             </h2>
-            <span className="push-half-ends">
-              <p className="body-info">Biggerstaff Retreat</p>
-              <p className="body-info">398 Biggerstaff Road</p>
-              <p className="body-info">Seneca, SC 29672</p>
-            </span>
-            <span className="push-half-ends">
-              <p className="body-info">May 13, 2017</p>
-              <p className="body-info">6:00 PM</p>
-            </span>
+            <p className="body-info">Biggerstaff Retreat</p>
+            <p className="body-info">398 Biggerstaff Road</p>
+            <p className="body-info push-half-bottom">Seneca, SC 29672</p>
+            <p className="body-info">May 13, 2017</p>
+            <p className="body-info">6:00 PM</p>
+          </div>
+          <div
+            className="text-light-primary text-center italic one-whole floating__item soft-double@palm-wide-and-up soft-double-ends soft-sides display-inline-block push-double-top@lap-and-up"
+          >
+            <h1 className="text-primary">#jensaysidrew</h1>
           </div>
         </div>
       );
