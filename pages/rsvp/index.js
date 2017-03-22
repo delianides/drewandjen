@@ -73,7 +73,7 @@ class Form extends Component {
       });
 
       this.setState({
-        additionalGuests: newGuestList,
+        additionalGuests: newGuestList
       });
     };
 
@@ -83,7 +83,7 @@ class Form extends Component {
         additionalGuests: this.state.additionalGuests.filter(
           (s, sidx) => idx !== sidx
         ),
-        numberOfGuests: this.state.numberOfGuests - 1,
+        numberOfGuests: this.state.numberOfGuests - 1
       });
     };
 
@@ -99,8 +99,16 @@ class Form extends Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
+    if (name === "isGoing") {
+      if (value === "no") {
+        this.setState({ numberOfGuests: 0 });
+      } else {
+        this.setState({ numberOfGuests: this.state.additionalGuests.length + 1 });
+      }
+    }
+
     this.setState({
-      [name]: value,
+      [name]: value
     });
   }
 
@@ -112,7 +120,7 @@ class Form extends Component {
       mode: "cors",
       headers: {
         accept: "application/javascript",
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         firstName: this.state.firstName,
@@ -122,17 +130,17 @@ class Form extends Component {
         additionalGuests: this.state.additionalGuests.map(p => p.name).join(),
         totalGuests: this.state.numberOfGuests,
         coffeePref: this.state.coffeePref,
-        entryDate: moment().toString(),
-      }),
+        entryDate: moment().toString()
+      })
     })
       .then(function(response) {
         _this.setState({
-          submitted: true,
+          submitted: true
         });
       })
       .catch(function(err) {
         _this.setState({
-          submitted: "error",
+          submitted: "error"
         });
       });
 
@@ -310,7 +318,7 @@ class Form extends Component {
                     <input
                       className="h2 text-dark-primary push-half-right"
                       style={{
-                        marginTop: "11px",
+                        marginTop: "11px"
                       }}
                       name="isGoing"
                       type="radio"
@@ -328,7 +336,7 @@ class Form extends Component {
                     <input
                       className="h2 text-dark-primary push-half-right"
                       style={{
-                        marginTop: "11px",
+                        marginTop: "11px"
                       }}
                       name="isGoing"
                       type="radio"
@@ -355,7 +363,7 @@ class Form extends Component {
                         <input
                           className="h2 text-dark-primary push-half-right"
                           style={{
-                            marginTop: "11px",
+                            marginTop: "11px"
                           }}
                           name="coffeePref"
                           type="radio"
@@ -372,7 +380,7 @@ class Form extends Component {
                         <input
                           className="h2 text-dark-primary push-half-right"
                           style={{
-                            marginTop: "11px",
+                            marginTop: "11px"
                           }}
                           name="coffeePref"
                           type="radio"
@@ -389,7 +397,7 @@ class Form extends Component {
                         <input
                           className="h2 text-dark-primary push-half-right"
                           style={{
-                            marginTop: "11px",
+                            marginTop: "11px"
                           }}
                           name="coffeePref"
                           type="radio"
